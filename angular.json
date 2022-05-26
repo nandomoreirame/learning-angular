@@ -18,7 +18,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:browser",
           "options": {
             "outputPath": "dist/learning-angular",
             "index": "src/index.html",
@@ -26,13 +26,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/assets/styles/main.scss"],
             "scripts": []
           },
           "configurations": {
@@ -69,7 +64,7 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "configurations": {
             "production": {
               "browserTarget": "learning-angular:build:production"
@@ -81,27 +76,133 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "ngx-build-plus:extract-i18n",
           "options": {
             "browserTarget": "learning-angular:build"
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "ngx-build-plus:karma",
           "options": {
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/assets/styles/main.scss"],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "tip-calculator-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/tip-calculator-app",
+      "sourceRoot": "projects/tip-calculator-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/tip-calculator-app",
+            "index": "projects/tip-calculator-app/src/index.html",
+            "main": "projects/tip-calculator-app/src/main.ts",
+            "polyfills": "projects/tip-calculator-app/src/polyfills.ts",
+            "tsConfig": "projects/tip-calculator-app/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": ["projects/tip-calculator-app/src/favicon.ico", "projects/tip-calculator-app/src/assets"],
             "styles": [
-              "src/styles.scss"
+              "projects/tip-calculator-app/src/assets/styles/root.css",
+              "projects/tip-calculator-app/src/assets/styles/main.scss"
             ],
             "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/tip-calculator-app/src/environments/environment.ts",
+                  "with": "projects/tip-calculator-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "tip-calculator-app:build:production"
+            },
+            "development": {
+              "browserTarget": "tip-calculator-app:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "tip-calculator-app:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/tip-calculator-app/src/test.ts",
+            "polyfills": "projects/tip-calculator-app/src/polyfills.ts",
+            "tsConfig": "projects/tip-calculator-app/tsconfig.spec.json",
+            "karmaConfig": "projects/tip-calculator-app/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": ["projects/tip-calculator-app/src/favicon.ico", "projects/tip-calculator-app/src/assets"],
+            "styles": ["projects/tip-calculator-app/src/assets/styles/main.scss"],
+            "scripts": []
+          }
+        },
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "browserTarget": "tip-calculator-app:build",
+            "styles": ["projects/tip-calculator-app/src/assets/styles/root.css"],
+            "port": 6006
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {
+            "browserTarget": "tip-calculator-app:build",
+            "styles": ["projects/tip-calculator-app/src/assets/styles/root.css"]
           }
         }
       }

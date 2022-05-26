@@ -1,0 +1,10 @@
+:root {
+  --tip-calc-color-white: #fff;
+  --tip-calc-color-ice: #c4e3e8;
+  --tip-calc-color-cod-gray: #0d0d0d;
+  --tip-calc-color-oslo-gray: #7c8a90;
+  --tip-calc-color-cape-cod: #404f4f;
+  --tip-calc-color-shamrock: #2ac6ac;
+
+  --tip-calc-font-family: 'Space Mono', 'Courier New', Courier, monospace;
+}

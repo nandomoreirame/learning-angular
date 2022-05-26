@@ -1,0 +1,27 @@
+.tip-calc-button {
+  appearance: none;
+  background: none var(--tip-calc-color-cod-gray);
+  border-radius: 6px;
+  border: 1px solid var(--tip-calc-color-cod-gray);
+  color: var(--tip-calc-color-white);
+  cursor: pointer;
+  font-family: var(--tip-calc-font-family);
+  line-height: 1;
+  padding: 1rem 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 800;
+  transition: background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+
+  &--block {
+    display: block;
+    width: 100%;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: var(--tip-calc-color-ice);
+    border-color: var(--tip-calc-color-ice);
+    color: var(--tip-calc-color-cod-gray);
+  }
+}
